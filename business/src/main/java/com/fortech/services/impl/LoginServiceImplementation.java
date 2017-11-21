@@ -15,6 +15,7 @@ public class LoginServiceImplementation implements LoginService {
     private UserRepository repository;
 
     public String login(String username, String password) {
+        System.out.println("called login service");
         String user = repository.find(username, password);
         return user;
     }

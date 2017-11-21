@@ -1,14 +1,14 @@
 import com.fortech.services.LoginService;
-import com.sun.faces.action.RequestMapping;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
-@RequestMapping
+@RequestScoped
 public class LoginBean {
     private String name;
     private String password;
@@ -43,12 +43,12 @@ public class LoginBean {
     }
 
 
-    public String login(String username, String password){
+    public String login(){
         System.out.println("called login method");
 
-        String user = loginService.login(username, password);
-
-        return "succes";
+        String user = loginService.login(name, password);
+        System.out.println(user);
+        return user;
 
     }
 }
