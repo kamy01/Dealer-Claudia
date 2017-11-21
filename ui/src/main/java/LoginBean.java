@@ -21,7 +21,7 @@ public class LoginBean {
     public void test()
     {
         countries = new ArrayList<String>();
-        countries.add("Romania");
+        countries.add("Romania,test");
         System.out.println("Post Construct");
     }
 
