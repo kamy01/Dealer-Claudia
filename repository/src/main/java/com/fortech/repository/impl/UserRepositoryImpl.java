@@ -5,21 +5,19 @@ import com.fortech.repository.UserRepository;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 
 @Stateless
 @Remote(UserRepository.class)
 public class UserRepositoryImpl implements UserRepository {
 
-    @PersistenceContext(name="myPU")
-    EntityManager em;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPU");
+    private EntityManager em = emf.createEntityManager();
 
     public String find(String username, String password) {
         UserEntity user = new UserEntity();
 
-        Query query = em.createQuery("Select usr FROM USERENTITY usr WHERE usr.name = :prm1", UserEntity.class);
+        Query query = em.createQuery("Select usr FROM user usr WHERE usr.name = :prm1", UserEntity.class);
         query.setParameter("prm1",username);
         user =(UserEntity) query.getSingleResult();
 
