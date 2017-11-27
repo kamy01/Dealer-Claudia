@@ -1,16 +1,17 @@
 package com.fortech.services.impl;
 
 
+import com.fortech.User;
 import com.fortech.repository.UserRepository;
-import com.fortech.services.LoginService;
+import com.fortech.services.UserService;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 @Stateless
-@Remote(LoginService.class)
-public class LoginServiceImplementation implements LoginService {
+@Remote(UserService.class)
+public class UserServiceImplementation implements UserService {
     @EJB
     private UserRepository repository;
 
@@ -18,5 +19,10 @@ public class LoginServiceImplementation implements LoginService {
         System.out.println("called login service");
         String user = repository.find(username, password);
         return user;
+    }
+
+    public void register(User user) {
+        repository.register(user);
+        System.out.println("User");
     }
 }

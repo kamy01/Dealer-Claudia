@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Sign In</title>
+</h:head>
+
+<h:body>
+    <h:form id="registerForm">
+        <p:growl id="growl" sticky="false" showDetail="true"/>
+        <p:outputLabel type="text" value="First Name:" name="firstname" />
+        <p:inputText type="text" name="Name" id="idFirstName" value="#{userBean.user.firstName}"/>
+        <br></br>
+        <p:outputLabel type="text" value="Last Name:" name="lastname" />
+        <p:inputText type="text" name="Name" id="idLastName" value="#{userBean.user.lastName}"/>
+        <br></br>
+        <p:outputLabel type="text" value="Username:" name="username" />
+        <p:inputText type="text" name="Name" id="idName" value="#{userBean.user.username}"/>
+        <br></br>
+        <p:outputLabel type="text" value="Password:" name="password" />
+        <p:password type="password" name="Password" id="idPass" value="#{userBean.user.password}"/>
+        <br></br>
+        <p:outputLabel type="text" value="Email:" name="email" />
+        <p:inputText id="email" required="true" label="email" requiredMessage="Email:" validatorMessage="Invalid email format" value="#{userBean.user.email}"></p:inputText>
+        <br></br>
+        <p:commandButton value="Sign in" action="#{userBean.register()}" id="registerButton" update="registerForm growl" ></p:commandButton>
+
+    </h:form>
+
+
+</h:body >
+
+</html>

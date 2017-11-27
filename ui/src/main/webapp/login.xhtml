@@ -3,7 +3,8 @@
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>Login Page</title>
@@ -11,14 +12,14 @@
 
 <h:body>
     <h:form id="loginForm">
-        <h:outputLabel type="text" value="Name" name="name" />
-        <h:outputLabel type="text" value="Name2" name="name2" />
-        <h:inputText type="text" name="Name" id="idName" value="#{loginBean.name}"/>
+        <p:growl id="growl" sticky="false" showDetail="true"/>
+        <p:outputLabel type="text" value="Username:" name="username" />
+        <p:inputText type="text" name="Username" id="idName" value="#{userBean.name}"/>
         <br></br>
-        <h:outputLabel type="text" value="Password" name="password" />
-        <h:inputSecret type="password" name="Password" id="idPass" value="#{loginBean.password}"/>
+        <p:outputLabel type="text" value="Password:" name="password" />
+        <p:password type="password" name="Password" id="idPass" value="#{userBean.password}"/>
         <br></br>
-        <h:commandButton type="submit" name="login" value="Login" action="#{loginBean.login}"></h:commandButton>
+        <p:commandButton value="Login" action="#{userBean.login()}" id="submitButton" update="loginForm growl" ></p:commandButton>
     </h:form>
 
 
