@@ -1,7 +1,11 @@
 package com.fortech;
 
-public class User {
+import java.io.Serializable;
 
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 8913732065557648340L;
+    
     private String firstName;
     private String lastName;
     private String username;

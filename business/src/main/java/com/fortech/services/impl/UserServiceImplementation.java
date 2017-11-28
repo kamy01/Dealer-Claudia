@@ -6,11 +6,9 @@ import com.fortech.repository.UserRepository;
 import com.fortech.services.UserService;
 
 import javax.ejb.EJB;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 @Stateless
-@Remote(UserService.class)
 public class UserServiceImplementation implements UserService {
     @EJB
     private UserRepository repository;
