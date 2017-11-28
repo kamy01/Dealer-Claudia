@@ -3,12 +3,16 @@ package com.fortech.entities;
 import javax.persistence.*;
 
 @Entity(name = "user")
+@NamedQueries({
+        @NamedQuery(name = "user.findUser",query = "Select usr FROM user usr WHERE usr.username = :prm1")})
+
 public class UserEntity{
 
     @Id
     @Column(name="id")
-     @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
 
     @Column(name = "firstName")
     private String firstName;

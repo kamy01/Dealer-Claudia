@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Stateless
 @Remote(UserRepository.class)
-@NamedQuery(name = "findUser",query = "Select usr FROM user usr WHERE usr.name = :prm1")
+
 public class UserRepositoryImpl implements UserRepository {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPU");
@@ -20,7 +20,7 @@ public class UserRepositoryImpl implements UserRepository {
         System.out.println("in find method");
 
         UserEntity user = new UserEntity();
-        Query query = em.createNamedQuery("findUser");
+        Query query = em.createNamedQuery("user.findUser");
         query.setParameter("prm1", username);
         user =(UserEntity) query.getSingleResult();
 
@@ -30,15 +30,18 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
 
-    @Override
+
     public void register(User user){
         System.out.println("in register method");
+
         UserEntity entity = new UserEntity();
         entity.setFirstName(user.getFirstName());
         entity.setLastName(user.getLastName());
         entity.setUsername(user.getUsername());
         entity.setPassword(user.getPassword());
         entity.setEmail(user.getEmail());
+        em.getTransaction().begin();
         em.persist(entity);
+        em.getTransaction().commit();
     }
 }

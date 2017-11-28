@@ -24,7 +24,7 @@ public class UserBean {
 
         String userDB = userService.login(username, password);
 
-        if (userDB.isEmpty()){
+        if (!userDB.isEmpty()){
             return "home.xhtml?faces-redirect=true";
         }
         else {
