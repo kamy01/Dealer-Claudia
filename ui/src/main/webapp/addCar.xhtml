@@ -4,7 +4,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>Add Car</title>
@@ -13,26 +14,42 @@
 <h:body>
     <h:form id="addCarForm">
         <p:growl id="growl" sticky="false" showDetail="true"/>
-        <p:outputLabel type="text" value="Name:" name="name" />
-        <p:inputText type="text" name="Name" id="idName" value="#{carBean.car.name}"/>
-         <br></br>
-        <p:outputLabel type="text" value="Mark:" name="mark" />
-        <p:inputText type="text" name="Mark" id="idMark" value="#{carBean.car.mark}"/>
-        <br></br>
-        <p:outputLabel type="text" value="Color:" name="color" />
-        <p:inputText type="text" name="Color" id="idColor" value="#{carBean.car.color}"/>
-        <br></br>
-        <p:outputLabel type="number" value="Price:" name="price" />
-        <p:inputText type="number" name="Price" id="idPrice" value="#{carBean.car.price}"/>
-        <br></br>
-        <p:outputLabel type="text" value="Condition:" name="condition" />
-        <p:inputText type="text" name="Condition" id="idCondition" value="#{carBean.car.condition}"/>
-        <br></br>
-        <p:outputLabel type="date" value="Date:" name="date" />
-        <p:inputText type="date" name="Date" id="idDate" value="#{carBean.car.registrationDate}"/>
-        <br></br>
 
-        <p:commandButton value="Add" action="#{carBean.addCar()}" id="addCarButton" update="addCarForm growl" ></p:commandButton>
+        <p:panel header="Add a car" style="margin-bottom: 2px;">
+            <h:panelGrid columns="1" cellpadding="1">
+                <p:outputLabel type="text" value="Name:" name="name" />
+                <p:inputText type="text" name="Name" id="idName" value="#{carBean.car.name}"/>
+                <br></br>
+                <p:outputLabel type="text" value="Mark:" name="mark" />
+                <p:inputText type="text" name="Mark" id="idMark" value="#{carBean.car.mark}"/>
+                <br></br>
+
+                <p:outputLabel for="color"  value="Color:" />
+                <p:selectOneMenu id="color" value="#{carBean.car.color}" style="width: 150px">
+                    <f:selectItem itemLabel="Select color" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{carBean.colors}" />
+                </p:selectOneMenu>
+
+                <br></br>
+                <p:outputLabel type="number" value="Price:" name="price" />
+                <p:inputText type="number" name="Price" id="idPrice" value="#{carBean.car.price}"/>
+                <br></br>
+
+                <p:outputLabel for="condition"  value="Condition:" />
+                <p:selectOneMenu id="condition" value="#{carBean.car.condition}">
+                    <f:selectItem itemLabel="Select condition" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{carBean.conditions}" />
+                </p:selectOneMenu>
+
+                <br></br>
+                <p:outputLabel type="date" value="Date:" name="date" />
+                <p:calendar readonly="true" type="date" name="Date" id="idDate" value="#{carBean.car.registrationDate}"/>
+                <br></br>
+            </h:panelGrid>
+
+            <p:commandButton value="Add" action="#{carBean.addCar()}" id="addCarButton" update="addCarForm growl" ></p:commandButton>
+        </p:panel>
+
 
     </h:form>
 
