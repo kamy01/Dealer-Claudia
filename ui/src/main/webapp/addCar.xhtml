@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Add Car</title>
+</h:head>
+
+<h:body>
+    <h:form id="addCarForm">
+        <p:growl id="growl" sticky="false" showDetail="true"/>
+        <p:outputLabel type="text" value="Name:" name="name" />
+        <p:inputText type="text" name="Name" id="idName" value="#{carBean.car.name}"/>
+         <br></br>
+        <p:outputLabel type="text" value="Mark:" name="mark" />
+        <p:inputText type="text" name="Mark" id="idMark" value="#{carBean.car.mark}"/>
+        <br></br>
+        <p:outputLabel type="text" value="Color:" name="color" />
+        <p:inputText type="text" name="Color" id="idColor" value="#{carBean.car.color}"/>
+        <br></br>
+        <p:outputLabel type="number" value="Price:" name="price" />
+        <p:inputText type="number" name="Price" id="idPrice" value="#{carBean.car.price}"/>
+        <br></br>
+        <p:outputLabel type="text" value="Condition:" name="condition" />
+        <p:inputText type="text" name="Condition" id="idCondition" value="#{carBean.car.condition}"/>
+        <br></br>
+        <p:outputLabel type="date" value="Date:" name="date" />
+        <p:inputText type="date" name="Date" id="idDate" value="#{carBean.car.registrationDate}"/>
+        <br></br>
+
+        <p:commandButton value="Add" action="#{carBean.addCar()}" id="addCarButton" update="addCarForm growl" ></p:commandButton>
+
+    </h:form>
+
+</h:body>
+</html>
