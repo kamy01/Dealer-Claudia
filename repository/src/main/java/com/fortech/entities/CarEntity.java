@@ -1,7 +1,7 @@
 package com.fortech.entities;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity(name="car")
 public class CarEntity {
@@ -20,9 +20,9 @@ public class CarEntity {
     private String color;
 
     @Column (name="price")
-    private float price;
+    private double price;
 
-    @Column (name="condition")
+    @Column (name="\"condition\"")
     private String condition;
 
     @Column (name="registrationDate")
@@ -52,11 +52,11 @@ public class CarEntity {
         this.color = color;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -68,6 +68,15 @@ public class CarEntity {
         this.condition = condition;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
     public Date getRegistrationDate() {
         return registrationDate;
     }
@@ -75,4 +84,5 @@ public class CarEntity {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
+
 }

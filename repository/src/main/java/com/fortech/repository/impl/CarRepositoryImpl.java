@@ -27,7 +27,7 @@ public class CarRepositoryImpl implements CarRepository {
         entity.setColor(car.getColor());
         entity.setPrice(car.getPrice());
         entity.setCondition(car.getCondition());
-        entity.setRegistrationDate(car.getRegistrationDate());
+        entity.setRegistrationDate(new java.sql.Date(car.getRegistrationDate().getTime()));
 
         em.getTransaction().begin();
         em.persist(entity);
