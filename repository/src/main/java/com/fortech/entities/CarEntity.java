@@ -79,7 +79,6 @@ public class CarEntity {
         this.id = id;
     }
 
-
     public Date getRegistrationDate() {
         return registrationDate;
     }

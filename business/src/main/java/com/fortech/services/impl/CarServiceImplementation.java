@@ -1,11 +1,13 @@
 package com.fortech.services.impl;
 
 import com.fortech.Car;
+import com.fortech.SearchCarCriteria;
 import com.fortech.repository.CarRepository;
 import com.fortech.services.CarService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -20,11 +22,13 @@ public class CarServiceImplementation implements CarService {
 
     }
 
-    public List<Car> searchCar(List<String> properties){
-        repository.searchCar(properties);
+    public List<Car> searchCar(SearchCarCriteria criteria){
+
+        List<Car> searchedCars = new ArrayList<Car>();
+        repository.searchCar(criteria);
         System.out.println("search a car");
 
-        //return
+        return searchedCars;
     }
 
 }

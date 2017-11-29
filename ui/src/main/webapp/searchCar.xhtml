@@ -16,31 +16,37 @@
         <p:growl id="messages"/>
 
         <h3>Marks</h3>
-        <p:selectManyCheckbox id="gridMarks" value="#{carBean.selectedMarks}" layout="pageDirection" columns="2">
+        <p:selectManyCheckbox id="gridMarks" value="#{carBean.criteria.selectedMarks}" layout="pageDirection" columns="2">
             <f:selectItems value="#{carBean.marks}" var="car" itemLabel="#{car}" itemValue="#{car}" />
         </p:selectManyCheckbox>
         <br></br>
 
-        <p:outputLabel for="color"  value="Color:" />
+        <h3>Colors</h3>
+        <p:outputLabel for="color"/>
         <p:selectOneMenu id="color" value="#{carBean.car.color}" required="true">
             <f:selectItem itemLabel="Select color" itemValue="" noSelectionOption="true" />
-            <f:selectItems value="#{carBean.colors}" />
+            <f:selectItems value="#{carBean.criteria.selectedColors}" />
         </p:selectOneMenu>
 
         <br></br>
         <h3>Conditions</h3>
-        <p:selectManyCheckbox id="gridConditions" value="#{carBean.selectedConditions}" layout="pageDirection" columns="2">
+        <p:selectManyCheckbox id="gridConditions" value="#{carBean.criteria.selectedConditions}" layout="pageDirection" columns="2">
             <f:selectItems value="#{carBean.conditions}" var="car" itemLabel="#{car}" itemValue="#{car}" />
         </p:selectManyCheckbox>
 
         <br></br>
         <br></br>
 
-        <p:commandButton value="Search" id="searchButton" actionListener="#{carBean.searchCarAction}" ajax="false" />
-        <p:commandButton value="Clear all" id="clear" actionListener="#{carBean.buttonAction}" ajax="false" />
+        <f:facet name="buttons">
+            <p:commandButton value="Search" id="searchButton" actionListener="#{carBean.searchCarAction}" ajax="false" />
+            <p:commandButton value="Clear all" update="panel" process="@this" id="clear" actionListener="#{carBean.clearAll}" ajax="false" >
+                <p:resetInput target=" panel"/>
+            </p:commandButton>
+        </f:facet>
 
         <h:outputText value="Result:   "></h:outputText>
-        <h:inputText> </h:inputText>
+        <h:inputText value="#{carBean.searchCarAction()}">
+        </h:inputText>
 
     </h:form>
 </h:body>

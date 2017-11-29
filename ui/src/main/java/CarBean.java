@@ -1,5 +1,7 @@
 import com.fortech.Car;
+import com.fortech.SearchCarCriteria;
 import com.fortech.services.CarService;
+import org.primefaces.context.RequestContext;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -8,38 +10,36 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @ManagedBean
 @RequestScoped
 public class CarBean {
-    private Car car =  new Car();
-    private Map<String,String> colors;
-    private Map<String,String> conditions;
+    private Car car = new Car();
+    private List<SelectItem> colors;
+    private List<SelectItem> conditions;
     private List<SelectItem> marks;
-    private List<String> selectedMarks;
-    private List<String> selectedColors;
-    private List<String> selectedConditions;
+    private SearchCarCriteria criteria;
 
     @EJB
     private CarService carService;
 
     @PostConstruct
     public void init() {
-        colors = new HashMap<String, String>();
-        colors.put("red", "red");
-        colors.put("black", "black");
-        colors.put("blue", "blue");
 
-        conditions = new HashMap<String, String>();
-        conditions.put("new", "new");
-        conditions.put("used", "used");
+        colors = new ArrayList<SelectItem>();
+        colors.add(new SelectItem("red", "red"));
+        colors.add(new SelectItem("black", "black"));
+        colors.add(new SelectItem("blue", "blue"));
+
+        conditions = new ArrayList<SelectItem>();
+        conditions.add(new SelectItem("new", "new"));
+        conditions.add(new SelectItem("used", "used"));
+
 
         marks = new ArrayList<SelectItem>();
         SelectItemGroup germanCars = new SelectItemGroup("German Cars");
-        germanCars.setSelectItems(new SelectItem[] {
+        germanCars.setSelectItems(new SelectItem[]{
                 new SelectItem("BMW", "BMW"),
                 new SelectItem("Mercedes", "Mercedes"),
                 new SelectItem("Volkswagen", "Volkswagen")
@@ -57,7 +57,7 @@ public class CarBean {
 
     }
 
-    public String addCar(){
+    public String addCar() {
 
         carService.addCar(car);
         //fara return ??
@@ -66,11 +66,13 @@ public class CarBean {
 
     public void searchCarAction() {
 
-        //carService.searchCar();
+        carService.searchCar(criteria);
 
     }
 
-
+    public void clearAll(){
+        RequestContext.getCurrentInstance().reset("form:panel");
+    }
 
     public Car getCar() {
         return car;
@@ -80,19 +82,20 @@ public class CarBean {
         this.car = car;
     }
 
-    public Map<String, String> getColors() {
+
+    public List<SelectItem> getColors() {
         return colors;
     }
 
-    public void setColors(Map<String, String> colors) {
+    public void setColors(List<SelectItem> colors) {
         this.colors = colors;
     }
 
-    public Map<String, String> getConditions() {
+    public List<SelectItem> getConditions() {
         return conditions;
     }
 
-    public void setConditions(Map<String, String> conditions) {
+    public void setConditions(List<SelectItem> conditions) {
         this.conditions = conditions;
     }
 
@@ -112,27 +115,12 @@ public class CarBean {
         this.carService = carService;
 
     }
-    public String[] getSelectedMarks() {
-        return selectedMarks;
+
+    public SearchCarCriteria getCriteria() {
+        return criteria;
     }
 
-    public void setSelectedMarks(String[] selectedMarks) {
-        this.selectedMarks = selectedMarks;
-    }
-
-    public String[] getSelectedColors() {
-        return selectedColors;
-    }
-
-    public void setSelectedColors(String[] selectedColors) {
-        this.selectedColors = selectedColors;
-    }
-
-    public String[] getSelectedConditions() {
-        return selectedConditions;
-    }
-
-    public void setSelectedConditions(String[] selectedConditions) {
-        this.selectedConditions = selectedConditions;
+    public void setCriteria(SearchCarCriteria criteria) {
+        this.criteria = criteria;
     }
 }

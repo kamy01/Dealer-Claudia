@@ -1,6 +1,7 @@
 package com.fortech.services;
 
 import com.fortech.Car;
+import com.fortech.SearchCarCriteria;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -8,6 +9,5 @@ import java.util.List;
 @Remote
 public interface CarService {
     void addCar(Car car);
-    //List<Car> searchCar(Car car);
-    List<Car> searchCar(List<String> properties);
+    List<Car> searchCar(SearchCarCriteria criteria);
 }

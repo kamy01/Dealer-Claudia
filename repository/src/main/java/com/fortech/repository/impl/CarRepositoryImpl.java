@@ -1,6 +1,7 @@
 package com.fortech.repository.impl;
 
 import com.fortech.Car;
+import com.fortech.SearchCarCriteria;
 import com.fortech.entities.CarEntity;
 import com.fortech.repository.CarRepository;
 
@@ -39,7 +40,7 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
 
-    public List<Car> searchCar(Car car){
+    public List<Car> searchCar(SearchCarCriteria criteria){
 
         System.out.println("search car method");
 
@@ -47,9 +48,9 @@ public class CarRepositoryImpl implements CarRepository {
 
         Query query = em.createNamedQuery("car.searchCar");
 
-        query.setParameter("pMark", car.getMark());
-        query.setParameter("pColor", car.getColor());
-        query.setParameter("pCondition", car.getCondition());
+        query.setParameter("pMark", criteria.getSelectedMarks());
+        query.setParameter("pColor", criteria.getSelectedColors());
+        query.setParameter("pCondition", criteria.getSelectedConditions());
 
         carEntities = (List<CarEntity>) query.getResultList();
 
