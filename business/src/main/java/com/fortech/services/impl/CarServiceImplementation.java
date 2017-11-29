@@ -6,6 +6,7 @@ import com.fortech.services.CarService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 @Stateless
 public class CarServiceImplementation implements CarService {
@@ -15,8 +16,15 @@ public class CarServiceImplementation implements CarService {
 
     public void addCar(Car car){
         repository.addCar(car);
-        System.out.println("add CarEntity");
+        System.out.println("add new car");
 
+    }
+
+    public List<Car> searchCar(List<String> properties){
+        repository.searchCar(properties);
+        System.out.println("search a car");
+
+        //return
     }
 
 }

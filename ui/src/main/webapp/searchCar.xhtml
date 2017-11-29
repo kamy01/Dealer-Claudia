@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Search a car</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:growl id="messages"/>
+
+        <h3>Marks</h3>
+        <p:selectManyCheckbox id="gridMarks" value="#{carBean.selectedMarks}" layout="pageDirection" columns="2">
+            <f:selectItems value="#{carBean.marks}" var="car" itemLabel="#{car}" itemValue="#{car}" />
+        </p:selectManyCheckbox>
+        <br></br>
+
+        <p:outputLabel for="color"  value="Color:" />
+        <p:selectOneMenu id="color" value="#{carBean.car.color}" required="true">
+            <f:selectItem itemLabel="Select color" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{carBean.colors}" />
+        </p:selectOneMenu>
+
+        <br></br>
+        <h3>Conditions</h3>
+        <p:selectManyCheckbox id="gridConditions" value="#{carBean.selectedConditions}" layout="pageDirection" columns="2">
+            <f:selectItems value="#{carBean.conditions}" var="car" itemLabel="#{car}" itemValue="#{car}" />
+        </p:selectManyCheckbox>
+
+        <br></br>
+        <br></br>
+
+        <p:commandButton value="Search" id="searchButton" actionListener="#{carBean.searchCarAction}" ajax="false" />
+        <p:commandButton value="Clear all" id="clear" actionListener="#{carBean.buttonAction}" ajax="false" />
+
+        <h:outputText value="Result:   "></h:outputText>
+        <h:inputText> </h:inputText>
+
+    </h:form>
+</h:body>
+</html>

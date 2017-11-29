@@ -20,6 +20,7 @@ public class UserRepositoryImpl implements UserRepository {
         System.out.println("in find method");
 
         UserEntity user = new UserEntity();
+
         Query query = em.createNamedQuery("user.findUser");
         query.setParameter("prm1", username);
         user =(UserEntity) query.getSingleResult();
@@ -28,7 +29,6 @@ public class UserRepositoryImpl implements UserRepository {
 
         return user.getUsername();
     }
-
 
 
     public void register(User user){

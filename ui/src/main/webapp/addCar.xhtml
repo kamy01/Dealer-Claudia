@@ -19,10 +19,10 @@
             <h:panelGrid columns="1" cellpadding="1">
                 <p:outputLabel type="text" value="Name:" name="name" />
                 <p:inputText type="text" name="Name" id="idName" value="#{carBean.car.name}"/>
-                <br></br>
+
+
                 <p:outputLabel type="text" value="Mark:" name="mark" />
                 <p:inputText type="text" name="Mark" id="idMark" value="#{carBean.car.mark}"/>
-                <br></br>
 
                 <p:outputLabel for="color"  value="Color:" />
                 <p:selectOneMenu id="color" value="#{carBean.car.color}" style="width: 150px">
@@ -30,10 +30,11 @@
                     <f:selectItems value="#{carBean.colors}" />
                 </p:selectOneMenu>
 
-                <br></br>
+
                 <p:outputLabel type="number" value="Price:" name="price" />
                 <p:inputText type="number" name="Price" id="idPrice" value="#{carBean.car.price}"/>
-                <br></br>
+
+
 
                 <p:outputLabel for="condition"  value="Condition:" />
                 <p:selectOneMenu id="condition" value="#{carBean.car.condition}">
@@ -41,7 +42,7 @@
                     <f:selectItems value="#{carBean.conditions}" />
                 </p:selectOneMenu>
 
-                <br></br>
+
                 <p:outputLabel type="date" value="Date:" name="date" />
                 <p:calendar readonly="true" type="date" name="Date" id="idDate" value="#{carBean.car.registrationDate}"/>
                 <br></br>
