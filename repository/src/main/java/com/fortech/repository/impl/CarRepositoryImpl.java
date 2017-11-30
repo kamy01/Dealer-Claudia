@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,13 +45,36 @@ public class CarRepositoryImpl implements CarRepository {
 
         System.out.println("search car method");
 
-        List<CarEntity> carEntities = new ArrayList<CarEntity>();
+        List<CarEntity> carEntities;
 
-        Query query = em.createNamedQuery("car.searchCar");
+        StringBuilder searchQuery= new StringBuilder("Select c FROM car c WHERE 1=1 ");
 
-        query.setParameter("pMark", criteria.getSelectedMarks());
-        query.setParameter("pColor", criteria.getSelectedColors());
-        query.setParameter("pCondition", criteria.getSelectedConditions());
+        if(!criteria.getSelectedMarks().isEmpty())
+        {
+            searchQuery.append("AND c.mark IN (:selectedMarks)");
+        }
+
+        if(!(criteria.getSelectedColor()==null))
+        {
+            searchQuery.append("AND c.color IN (:selectedColor)");
+        }
+
+        if(!criteria.getSelectedConditions().isEmpty())
+        {
+            searchQuery.append("AND c.condition IN (:selectedConditions)");
+        }
+
+        Query query = em.createQuery(searchQuery.toString());
+
+        if(!criteria.getSelectedMarks().isEmpty()) {
+            query.setParameter("selectedMarks", criteria.getSelectedMarks());
+        }
+        if(!(criteria.getSelectedColor()==null)){
+            query.setParameter("selectedColor", criteria.getSelectedColor());
+        }
+        if(!criteria.getSelectedConditions().isEmpty()) {
+            query.setParameter("selectedConditions", criteria.getSelectedConditions());
+        }
 
         carEntities = (List<CarEntity>) query.getResultList();
 
@@ -75,7 +99,7 @@ public class CarRepositoryImpl implements CarRepository {
 
             searchResult.add(c);
         }
-
+        System.out.println("search car method result:" +searchResult.size());
         return searchResult;
 
     }

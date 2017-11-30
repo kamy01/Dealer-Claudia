@@ -4,9 +4,6 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity(name="car")
-@NamedQueries({
-        @NamedQuery(name = "car.searchCar", query = "Select c FROM car c WHERE c.mark=:pMark or c.color=:pColor or c.condition = :pCondition ")})
-
 public class CarEntity {
     @Id
     @Column(name="id")

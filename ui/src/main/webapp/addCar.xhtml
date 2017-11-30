@@ -16,41 +16,38 @@
         <p:growl id="growl" sticky="false" showDetail="true"/>
 
         <p:panel header="Add a car" style="margin-bottom: 2px;">
-            <h:panelGrid columns="1" cellpadding="1">
+            <h:panelGrid columns="2" cellpadding="1">
                 <p:outputLabel type="text" value="Name:" name="name" />
                 <p:inputText type="text" name="Name" id="idName" value="#{carBean.car.name}"/>
 
-
-                <p:outputLabel type="text" value="Mark:" name="mark" />
-                <p:inputText type="text" name="Mark" id="idMark" value="#{carBean.car.mark}"/>
+                <p:outputLabel for="mark"  value="Mark:" />
+                <p:selectOneMenu id="mark" value="#{carBean.car.mark}" style="width: 150px">
+                    <f:selectItem itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{carBean.marks}" />
+                </p:selectOneMenu>
 
                 <p:outputLabel for="color"  value="Color:" />
                 <p:selectOneMenu id="color" value="#{carBean.car.color}" style="width: 150px">
-                    <f:selectItem itemLabel="Select color" itemValue="" noSelectionOption="true" />
+                    <f:selectItem  itemValue="" noSelectionOption="true" />
                     <f:selectItems value="#{carBean.colors}" />
                 </p:selectOneMenu>
-
 
                 <p:outputLabel type="number" value="Price:" name="price" />
                 <p:inputText type="number" name="Price" id="idPrice" value="#{carBean.car.price}"/>
 
-
-
                 <p:outputLabel for="condition"  value="Condition:" />
                 <p:selectOneMenu id="condition" value="#{carBean.car.condition}">
-                    <f:selectItem itemLabel="Select condition" itemValue="" noSelectionOption="true" />
+                    <f:selectItem itemValue="" noSelectionOption="true" />
                     <f:selectItems value="#{carBean.conditions}" />
                 </p:selectOneMenu>
 
-
                 <p:outputLabel type="date" value="Date:" name="date" />
-                <p:calendar readonly="true" type="date" name="Date" id="idDate" value="#{carBean.car.registrationDate}"/>
+                <p:calendar type="date" name="Date" id="idDate" value="#{carBean.car.registrationDate}"/>
                 <br></br>
             </h:panelGrid>
 
             <p:commandButton value="Add" action="#{carBean.addCar()}" id="addCarButton" update="addCarForm growl" ></p:commandButton>
         </p:panel>
-
 
     </h:form>
 

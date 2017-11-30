@@ -21,12 +21,14 @@ public class CarBean {
     private List<SelectItem> marks;
     private SearchCarCriteria criteria;
 
+    private List<Car> cars;
+
     @EJB
     private CarService carService;
 
     @PostConstruct
     public void init() {
-
+        cars = new ArrayList<Car>();
         colors = new ArrayList<SelectItem>();
         colors.add(new SelectItem("red", "red"));
         colors.add(new SelectItem("black", "black"));
@@ -55,6 +57,8 @@ public class CarBean {
         marks.add(germanCars);
         marks.add(americanCars);
 
+        criteria = new SearchCarCriteria();
+
     }
 
     public String addCar() {
@@ -66,12 +70,13 @@ public class CarBean {
 
     public void searchCarAction() {
 
-        carService.searchCar(criteria);
+      cars=  carService.searchCar(criteria);
+        System.out.println("search car method bean" +cars.size());
 
     }
 
     public void clearAll(){
-        RequestContext.getCurrentInstance().reset("form:panel");
+        RequestContext.getCurrentInstance().reset("searchForm:searchPanel");
     }
 
     public Car getCar() {
@@ -107,17 +112,17 @@ public class CarBean {
         this.marks = marks;
     }
 
-    public CarService getCarService() {
-        return carService;
-    }
-
-    public void setCarService(CarService carService) {
-        this.carService = carService;
-
-    }
-
     public SearchCarCriteria getCriteria() {
         return criteria;
+    }
+
+    public List<Car> getCars() {
+        System.out.println("search car method get" +cars.size());
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public void setCriteria(SearchCarCriteria criteria) {

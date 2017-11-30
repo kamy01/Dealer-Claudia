@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SearchCarCriteria implements Serializable{
     private List<String> selectedMarks;
-    private List<String> selectedColors;
+    private String selectedColor;
     private List<String> selectedConditions;
 
     public List<String> getSelectedMarks() {
@@ -16,12 +16,12 @@ public class SearchCarCriteria implements Serializable{
         this.selectedMarks = selectedMarks;
     }
 
-    public List<String> getSelectedColors() {
-        return selectedColors;
+    public String getSelectedColor() {
+        return selectedColor;
     }
 
-    public void setSelectedColors(List<String> selectedColors) {
-        this.selectedColors = selectedColors;
+    public void setSelectedColor(String selectedColor) {
+        this.selectedColor = selectedColor;
     }
 
     public List<String> getSelectedConditions() {

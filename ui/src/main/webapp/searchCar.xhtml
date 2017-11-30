@@ -12,42 +12,56 @@
 </h:head>
 
 <h:body>
-    <h:form>
-        <p:growl id="messages"/>
+    <h:form id="searchForm">
+        <p:panel id="searchPanel" header="searchForm">
+            <p:growl id="messages"/>
 
-        <h3>Marks</h3>
-        <p:selectManyCheckbox id="gridMarks" value="#{carBean.criteria.selectedMarks}" layout="pageDirection" columns="2">
-            <f:selectItems value="#{carBean.marks}" var="car" itemLabel="#{car}" itemValue="#{car}" />
-        </p:selectManyCheckbox>
+            <h3>Marks</h3>
+            <p:selectManyCheckbox id="gridMarks" value="#{carBean.criteria.selectedMarks}" layout="pageDirection"
+                                  columns="2">
+                <f:selectItems value="#{carBean.marks}" var="car" itemLabel="#{car}" itemValue="#{car}"/>
+            </p:selectManyCheckbox>
+            <br></br>
+
+            <h3>Colors</h3>
+            <p:outputLabel for="color"/>
+            <p:selectOneMenu id="color" value="#{carBean.criteria.selectedColor}" required="false">
+                <f:selectItem itemLabel="Select color" itemValue="" noSelectionOption="true"/>
+                <f:selectItems value="#{carBean.colors}" var="car" itemLabel="#{car}" itemValue="#{car}"/>
+            </p:selectOneMenu>
+
+            <br></br>
+            <h3>Conditions</h3>
+            <p:selectManyCheckbox id="gridConditions" value="#{carBean.criteria.selectedConditions}"
+                                  layout="pageDirection" columns="2">
+                <f:selectItems value="#{carBean.conditions}" var="car" itemLabel="#{car}" itemValue="#{car}"/>
+            </p:selectManyCheckbox>
+        </p:panel>
+        <br></br>
         <br></br>
 
-        <h3>Colors</h3>
-        <p:outputLabel for="color"/>
-        <p:selectOneMenu id="color" value="#{carBean.car.color}" required="true">
-            <f:selectItem itemLabel="Select color" itemValue="" noSelectionOption="true" />
-            <f:selectItems value="#{carBean.criteria.selectedColors}" />
-        </p:selectOneMenu>
+
+
+            <p:commandButton value="Search" id="searchButton" action="#{carBean.searchCarAction}" ajax="false"/>
+            <p:commandButton value="Clear all" update="searchPanel" process="@this" id="clear"
+                             actionListener="#{carBean.clearAll}"/>
+
 
         <br></br>
-        <h3>Conditions</h3>
-        <p:selectManyCheckbox id="gridConditions" value="#{carBean.criteria.selectedConditions}" layout="pageDirection" columns="2">
-            <f:selectItems value="#{carBean.conditions}" var="car" itemLabel="#{car}" itemValue="#{car}" />
-        </p:selectManyCheckbox>
-
-        <br></br>
-        <br></br>
-
-        <f:facet name="buttons">
-            <p:commandButton value="Search" id="searchButton" actionListener="#{carBean.searchCarAction}" ajax="false" />
-            <p:commandButton value="Clear all" update="panel" process="@this" id="clear" actionListener="#{carBean.clearAll}" ajax="false" >
-                <p:resetInput target=" panel"/>
-            </p:commandButton>
-        </f:facet>
-
         <h:outputText value="Result:   "></h:outputText>
-        <h:inputText value="#{carBean.searchCarAction()}">
-        </h:inputText>
+        <br></br>
 
+        <p:dataTable var="car" value="#{carBean.cars}">
+            <p:column headerText="Mark">
+                <h:outputText value="#{car.mark}"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{car.name}"/>
+            </p:column>
+
+
+        </p:dataTable>
     </h:form>
 </h:body>
 </html>

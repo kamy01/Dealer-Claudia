@@ -24,11 +24,11 @@ public class CarServiceImplementation implements CarService {
 
     public List<Car> searchCar(SearchCarCriteria criteria){
 
-        List<Car> searchedCars = new ArrayList<Car>();
-        repository.searchCar(criteria);
+
+
         System.out.println("search a car");
 
-        return searchedCars;
+        return  repository.searchCar(criteria);
     }
 
 }
