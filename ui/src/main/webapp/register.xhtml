@@ -5,35 +5,51 @@
 
 <html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>Sign In</title>
 </h:head>
 
 <h:body>
-    <h:form id="registerForm">
-        <p:growl id="growl" sticky="false" showDetail="true"/>
-        <p:outputLabel type="text" value="First Name:" name="firstname" />
-        <p:inputText type="text" name="Name" id="idFirstName" value="#{userBean.user.firstName}"/>
-        <br></br>
-        <p:outputLabel type="text" value="Last Name:" name="lastname" />
-        <p:inputText type="text" name="Name" id="idLastName" value="#{userBean.user.lastName}"/>
-        <br></br>
-        <p:outputLabel type="text" value="Username:" name="username" />
-        <p:inputText type="text" name="Name" id="idName" value="#{userBean.user.username}"/>
-        <br></br>
-        <p:outputLabel type="text" value="Password:" name="password" />
-        <p:password type="password" name="Password" id="idPass" value="#{userBean.user.password}"/>
-        <br></br>
-        <p:outputLabel type="text" value="Email:" name="email" />
-        <p:inputText id="email" required="true" label="email" requiredMessage="Email:" validatorMessage="Invalid email format" value="#{userBean.user.email}"></p:inputText>
-        <br></br>
-        <p:commandButton value="Sign in" action="#{userBean.register()}" id="registerButton" update="registerForm growl" ></p:commandButton>
 
-    </h:form>
+    <ui:composition template="template/template.xhtml">
 
+        <ui:define name="header">
 
-</h:body >
+            You have to register before to login.
+        </ui:define>
+
+        <ui:define name="content">
+            <h:outputStylesheet library="css" name="register.css"></h:outputStylesheet>
+
+            <h:form id="registerForm">
+                <p:growl id="growl" sticky="false" showDetail="true"/>
+                <p:panelGrid columns="2" layout="grid" columnClasses="label value ui-grid-col-2">
+
+                    <p:outputLabel type="text" value="First Name:" name="firstname"/>
+                    <p:inputText type="text" name="Name" id="idFirstName" value="#{userBean.user.firstName}"/>
+
+                    <p:outputLabel type="text" value="Last Name:" name="lastname"/>
+                    <p:inputText type="text" name="Name" id="idLastName" value="#{userBean.user.lastName}"/>
+
+                    <p:outputLabel type="text" value="Username:" name="username"/>
+                    <p:inputText type="text" name="Name" id="idName" value="#{userBean.user.username}"/>
+
+                    <p:outputLabel type="text" value="Password:" name="password"/>
+                    <p:password type="password" name="Password" id="idPass" value="#{userBean.user.password}"/>
+
+                    <p:outputLabel type="text" value="Email:" name="email"/>
+                    <p:inputText id="email" required="true" label="email" requiredMessage="Email:"
+                                 validatorMessage="Invalid email format" value="#{userBean.user.email}"></p:inputText>
+
+                    <p:commandButton value="Sign in" action="#{userBean.register()}" id="registerButton"
+                                     update="registerForm growl"></p:commandButton>
+                </p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
 
 </html>

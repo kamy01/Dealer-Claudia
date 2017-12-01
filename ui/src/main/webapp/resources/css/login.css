@@ -1,0 +1,15 @@
+#loginForm {
+    height: auto;
+    width: 400px;
+    margin-left: 40%;
+    border: groove;
+    background-color: whitesmoke;
+    padding: 40px 40px 40px 40px;
+    font:small-caption;
+    text-align: center;
+    display: contents;
+}
+
+.buttons {
+    margin-top: 20px;
+}

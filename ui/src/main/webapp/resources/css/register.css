@@ -1,0 +1,14 @@
+#registerForm {
+    height: auto;
+    width: 400px;
+    margin-left: 40%;
+    background-color: whitesmoke;
+    padding: 40px 10px 40px 10px;
+    font:small-caption;
+    text-align: center;
+    display: contents;
+}
+
+#registerButton {
+    margin-top: 20px;
+}

@@ -1,55 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns:h="http://java.sun.com/jsf/html"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
-
-<h:head>
-    <title>Add Car</title>
-</h:head>
-
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 <h:body>
-    <h:form id="addCarForm">
-        <p:growl id="growl" sticky="false" showDetail="true"/>
 
-        <p:panel header="Add a car" style="margin-bottom: 2px;">
-            <h:panelGrid columns="2" cellpadding="1">
-                <p:outputLabel type="text" value="Name:" name="name" />
-                <p:inputText type="text" name="Name" id="idName" value="#{carBean.car.name}"/>
+    <ui:composition template="template/template.xhtml">
 
-                <p:outputLabel for="mark"  value="Mark:" />
-                <p:selectOneMenu id="mark" value="#{carBean.car.mark}" style="width: 150px">
-                    <f:selectItem itemValue="" noSelectionOption="true" />
-                    <f:selectItems value="#{carBean.marks}" />
-                </p:selectOneMenu>
+        <ui:define name="content">
+            <h:form id="addCarForm">
+                <p:growl id="growl" sticky="false" showDetail="true"/>
 
-                <p:outputLabel for="color"  value="Color:" />
-                <p:selectOneMenu id="color" value="#{carBean.car.color}" style="width: 150px">
-                    <f:selectItem  itemValue="" noSelectionOption="true" />
-                    <f:selectItems value="#{carBean.colors}" />
-                </p:selectOneMenu>
+                <p:panel id="addCarPanel" header="Add a car" style="margin-bottom: 2px;">
+                    <h:panelGrid columns="2" cellpadding="1">
+                        <p:outputLabel type="text" value="Name:" name="name"/>
+                        <p:inputText type="text" name="Name" id="idName" value="#{carBean.car.name}"/>
 
-                <p:outputLabel type="number" value="Price:" name="price" />
-                <p:inputText type="number" name="Price" id="idPrice" value="#{carBean.car.price}"/>
+                        <p:outputLabel for="mark" value="Mark:"/>
+                        <p:selectOneMenu id="mark" value="#{carBean.car.mark}" style="width: 150px">
+                            <f:selectItem itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{carBean.marks}"/>
+                        </p:selectOneMenu>
 
-                <p:outputLabel for="condition"  value="Condition:" />
-                <p:selectOneMenu id="condition" value="#{carBean.car.condition}">
-                    <f:selectItem itemValue="" noSelectionOption="true" />
-                    <f:selectItems value="#{carBean.conditions}" />
-                </p:selectOneMenu>
+                        <p:outputLabel for="color" value="Color:"/>
+                        <p:selectOneMenu id="color" value="#{carBean.car.color}" style="width: 150px">
+                            <f:selectItem itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{carBean.colors}"/>
+                        </p:selectOneMenu>
 
-                <p:outputLabel type="date" value="Date:" name="date" />
-                <p:calendar type="date" name="Date" id="idDate" value="#{carBean.car.registrationDate}"/>
-                <br></br>
-            </h:panelGrid>
+                        <p:outputLabel type="number" value="Price:" name="price"/>
+                        <p:spinner id="idPrice" value="#{carBean.car.price}" stepFactor="100" min="0" suffix="$"></p:spinner>
 
-            <p:commandButton value="Add" action="#{carBean.addCar()}" id="addCarButton" update="addCarForm growl" ></p:commandButton>
-        </p:panel>
+                        <p:outputLabel for="condition" value="Condition:"/>
+                        <p:selectOneMenu id="condition" value="#{carBean.car.condition}">
+                            <f:selectItem itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{carBean.conditions}"/>
+                        </p:selectOneMenu>
 
-    </h:form>
+                        <p:outputLabel type="date" value="Date:" name="date"/>
+                        <p:calendar type="date" name="Date" id="idDate" value="#{carBean.car.registrationDate}"/>
+                        <br></br>
+                    </h:panelGrid>
+
+                    <p:commandButton value="Add" action="#{carBean.addCar()}" id="addCarButton"
+                                     update="addCarForm growl"></p:commandButton>
+                </p:panel>
+            </h:form>
+
+
+        </ui:define>
+    </ui:composition>
 
 </h:body>
+
 </html>

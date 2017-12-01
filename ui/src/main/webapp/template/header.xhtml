@@ -2,17 +2,23 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:p="http://primefaces.org/ui">
 
 <body>
 <ui:composition>
     <div id="header">
-        <div id="header-img">
-            <img alt="Image"
-                 src="http://cluj.startupweekend.org/files/2015/04/fortech-logo.png"
-                 width="30%" height="3.3%"/>
-        </div>
+        <p:growl id="messages"/>
+
+        <p:menubar>
+            <p:submenu label="Cars">
+                <p:menuitem value="Add car" url="#"></p:menuitem>
+                <p:menuitem value="Search car" url="#"></p:menuitem>
+            </p:submenu>
+
+            <p:submenu label="Owners"></p:submenu>
+            <p:submenu label="Services"></p:submenu>
+            <p:submenu label="About us"></p:submenu>
+        </p:menubar>
     </div>
 </ui:composition>
 </body>
